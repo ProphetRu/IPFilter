@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy_ubuntu:
+  deploy_ubuntu_elf:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
@@ -39,4 +39,4 @@ jobs:
           upload_url: '${{ steps.create_release.outputs.upload_url }}'
           asset_path: './IPFilter'
           asset_name: 'IPFilter-${{ github.run_number }}-Linux.elf'
-          asset_content_type: application/octet-stream
+          asset_content_type: application/vnd.debian.binary-package

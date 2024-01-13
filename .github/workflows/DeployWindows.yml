@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy_windows:
+  deploy_windows_exe:
     runs-on: windows-latest
     permissions: write-all
     steps:
@@ -39,4 +39,4 @@ jobs:
           upload_url: '${{ steps.create_release.outputs.upload_url }}'
           asset_path: './Release/IPFilter.exe'
           asset_name: 'IPFilter-${{ github.run_number }}-Windows.exe'
-          asset_content_type: application/octet-stream
+          asset_content_type: application/vnd.debian.binary-package

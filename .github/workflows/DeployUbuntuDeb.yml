@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy_ubuntu:
+  deploy_ubuntu_deb:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
