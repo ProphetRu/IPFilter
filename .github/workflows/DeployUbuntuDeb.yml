@@ -26,8 +26,8 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         with:
-          tag_name: 'Release'
-          release_name: 'Release Ubuntu Deb'
+          tag_name: 'deb ${{ github.run_number }}'
+          release_name: 'Release Ubuntu Deb ${{ github.run_number }}'
           draft: false
           prerelease: false
       - name: Upload Release Asset Ubuntu
@@ -38,5 +38,5 @@ jobs:
         with:
           upload_url: '${{ steps.create_release.outputs.upload_url }}'
           asset_path: './IPFilter-1.0.0-Linux.deb'
-          asset_name: 'IPFilter-Linux.deb'
+          asset_name: 'IPFilter-${{ github.run_number }}-Linux.deb'
           asset_content_type: application/vnd.debian.binary-package

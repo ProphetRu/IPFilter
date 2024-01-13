@@ -26,8 +26,8 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         with:
-          tag_name: 'Release'
-          release_name: 'Release Windows Exe'
+          tag_name: 'exe ${{ github.run_number }}'
+          release_name: 'Release Windows Exe ${{ github.run_number }}'
           draft: false
           prerelease: false
       - name: Upload Release Asset Windows
@@ -38,5 +38,5 @@ jobs:
         with:
           upload_url: '${{ steps.create_release.outputs.upload_url }}'
           asset_path: './Release/IPFilter.exe'
-          asset_name: 'IPFilter-Windows.exe'
+          asset_name: 'IPFilter-${{ github.run_number }}-Windows.exe'
           asset_content_type: application/octet-stream
