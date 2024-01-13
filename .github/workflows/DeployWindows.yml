@@ -26,8 +26,8 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         with:
-          tag_name: '${{ github.run_number }}'
-          release_name: 'Release Windows ${{ github.run_number }}'
+          tag_name: 'Windows Exe ${{ github.run_number }}'
+          release_name: 'Release Windows Exe ${{ github.run_number }}'
           draft: false
           prerelease: false
       - name: Upload Release Asset Windows
@@ -39,4 +39,4 @@ jobs:
           upload_url: '${{ steps.create_release.outputs.upload_url }}'
           asset_path: './Release/IPFilter.exe'
           asset_name: 'IPFilter-${{ github.run_number }}-Windows.exe'
-          asset_content_type: application/vnd.debian.binary-package
+          asset_content_type: application/octet-stream
