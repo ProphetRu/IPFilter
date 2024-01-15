@@ -8,15 +8,21 @@ jobs:
     runs-on: windows-latest
     permissions: write-all
     steps:
+      - name: Download vcpkg
+        run: 'git clone https://github.com/Microsoft/vcpkg.git'
+      - name: Install vcpkg
+        run: '.\vcpkg\bootstrap-vcpkg.bat -disableMetrics'
+      - name: Install gtest
+        run: '.\vcpkg\vcpkg install gtest'
+      - name: Integrate vcpkg
+        run: '.\vcpkg\vcpkg integrate install'
       - name: Get repository code
         uses: actions/checkout@v3
         with:
           submodules: true
-      - name: Clone gtest library
-        run: 'git clone https://github.com/google/googletest.git'
       - name: Build project
         run: |
-          cmake .
+          cmake . -DCMAKE_TOOLCHAIN_FILE=D:/a/IPFilter/IPFilter/vcpkg/scripts/buildsystems/vcpkg.cmake
           cmake --build . --config Release
       - name: Test project
         run: ctest

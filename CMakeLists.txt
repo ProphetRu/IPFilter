@@ -40,40 +40,26 @@ set_target_properties(${PROJECT_NAME} ${TEST_NAME}
 #--------------------------------------------------------------------------------------------------
 # gtest
 #
-find_package(GTest)
+find_package(GTest REQUIRED)
 
 # add src to the include directories for the test target
 target_include_directories(${TEST_NAME} 
 	PRIVATE
 	${SRC_DIR}
 	${GTEST_INCLUDE_DIRS}
+	${GTEST_LIBRARY} 
+	${GTEST_INCLUDE_DIR}
+	${GTEST_MAIN_LIBRARY}
 )
 
 # link test target against gtest libraries
 target_link_libraries(${TEST_NAME} 
 	PRIVATE
-	${GTEST_BOOTH_LIBRARIES}
-	#gmock
-	#gmock_main
-	gtest 
-	gtest_main
+	GTest::gtest 
+	GTest::gtest_main 
+	GTest::gmock 
+	GTest::gmock_main
 )
-
-if (MSVC)
-	set(INSTALL_GTEST OFF)
-	
-	# build googletest
-	add_subdirectory(
-		${CMAKE_CURRENT_SOURCE_DIR}/googletest
-		EXCLUDE_FROM_ALL
-	)
-	
-	# add gtest to the filter in VS-Solution
-	set_target_properties(gtest gtest_main
-		PROPERTIES
-		FOLDER "gtest-lib"
-	)
-endif (MSVC)
 
 
 #--------------------------------------------------------------------------------------------------

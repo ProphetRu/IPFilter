@@ -1,11 +1,11 @@
 # IP Filter
 Educational project with [googletest](https://github.com/google/googletest)
 
-## Build local
+## Build local Linux
 ```shell
-cd IPFilter
-git clone https://github.com/google/googletest.git
+sudo apt-get update && sudo apt-get install cmake libgtest-dev -y
 
+cd IPFilter
 mkdir build && cd build
 
 cmake ..
@@ -15,6 +15,20 @@ cmake --build . --config Release
 
 # build deb-package
 cmake --build . --target package
+```
+
+## Build local Windows
+```shell
+vcpkg install gtest
+vcpkg integrate install
+
+cd IPFilter
+mkdir build && cd build
+
+cmake .. -DCMAKE_TOOLCHAIN_FILE="path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+# build release
+cmake --build . --config Release
 ```
 
 ## Testing
