@@ -16,13 +16,15 @@ jobs:
         run: '.\vcpkg\vcpkg install gtest'
       - name: Integrate vcpkg
         run: '.\vcpkg\vcpkg integrate install'
+      - name: TEST OF FILE EXISITING
+        run: 'type D:/a/IPFilter/IPFilter/vcpkg/scripts/buildsystems/vcpkg.cmake'
       - name: Get repository code
         uses: actions/checkout@v3
         with:
           submodules: true
       - name: Build project
         run: |
-          cmake . -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
+          cmake . -DCMAKE_TOOLCHAIN_FILE=D:/a/IPFilter/IPFilter/vcpkg/scripts/buildsystems/vcpkg.cmake
           cmake --build . --config Release
       - name: Test project
         run: ctest
