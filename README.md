@@ -25,7 +25,7 @@ vcpkg integrate install
 cd IPFilter
 mkdir build && cd build
 
-cmake .. -DCMAKE_TOOLCHAIN_FILE="path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake .. -DCMAKE_TOOLCHAIN_FILE="path/to/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
 # build release
 cmake --build . --config Release
