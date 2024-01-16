@@ -13,7 +13,7 @@ jobs:
       - name: Install vcpkg
         run: '.\vcpkg\bootstrap-vcpkg.bat -disableMetrics'
       - name: Install gtest
-        run: '.\vcpkg\vcpkg install gtest --triplet x64-windows'
+        run: '.\vcpkg\vcpkg install gtest'
       - name: Integrate vcpkg
         run: '.\vcpkg\vcpkg integrate install'
       - name: Get repository code
@@ -22,8 +22,8 @@ jobs:
           submodules: true
       - name: Build project
         run: |
-          cmake -B build -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows
-          cmake --build build --config Release
+          cmake . -DCMAKE_TOOLCHAIN_FILE=D:/a/IPFilter/IPFilter/vcpkg/scripts/buildsystems/vcpkg.cmake
+          cmake --build . --config Release
       - name: Test project
         run: ctest
       - name: Create Release
