@@ -8,6 +8,10 @@ jobs:
     runs-on: windows-latest
     permissions: write-all
     steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+        with:
+          submodules: true
       - name: Download vcpkg
         run: 'git clone https://github.com/Microsoft/vcpkg.git'
       - name: Install vcpkg
@@ -16,10 +20,6 @@ jobs:
         run: '.\vcpkg\vcpkg install gtest'
       - name: Integrate vcpkg
         run: '.\vcpkg\vcpkg integrate install'
-      - name: Get repository code
-        uses: actions/checkout@v3
-        with:
-          submodules: true
       - name: Build project
         run: |
           cmake . -DCMAKE_TOOLCHAIN_FILE=D:/a/IPFilter/IPFilter/vcpkg/scripts/buildsystems/vcpkg.cmake
