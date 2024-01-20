@@ -2,12 +2,13 @@
 
 #include <string>
 #include <vector>
+#include <array>
 
 constexpr auto IP_SIZE = 4;
 
 struct IP final
 {
-	int n[IP_SIZE]{ 0 };
+	std::array<int, IP_SIZE> n{ };
 
     [[nodiscard]] bool operator<(const IP& other) const noexcept
 	{
